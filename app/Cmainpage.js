@@ -19,39 +19,30 @@ Ext.define("TDK.Cmainpage", {
   
   onGridDblClick: function(grid, record, item, index, e, eOpts) {
     try {
-      var form = Ext.create("Ext.window.Window", {
-        title: "Edit Gaji",
-        width: 700,
-        height: 500,
-        modal: true,
-      });
-      
+      var form = Ext.create("TDK.input.formed");
+      form.down('form').loadRecord(record);  // Load data ke form
       form.show();
     } catch (ex) {
       console.error(ex)
     }
   },
 
-  onSinkronisasi: function(btn) {
-    try {
-      var form = Ext.create("TDK.input.formed", 
-      // {
-      //   listeners: {
-      //     close: function() {
-      //       // Refresh grid setelah form ditutup
-      //       var grid = this.lookupReference('Gaji');
-      //       if (grid && grid.getStore()) {
-      //         grid.getStore().load();
-      //       }
-      //     },
-      //     scope: this
-      //   }
-      // }
-      );
-      form.show();
-    } catch (ex) {
-      console.error(ex);
-      COMP.TipToast.msgbox("Error", ex.message, { cls: "danger", delay: 2000 });
-    }
+onSave: function(btn) {
+  var win   = btn.up('window');     // TDK.input.formed
+  var form  = win.down('form');
+  var store = win.gridStore;        // ⬅ STORE GRID
+
+  // if (!store) {
+  //   Ext.Msg.alert('Error', 'Store grid tidak ditemukan');
+  //   return;
+  // }
+
+  if (form.isValid()) {
+    var values = form.getValues();
+
+    store.add(values);              // ⬅ MASUK KE GRID
+    win.close();
   }
+
+}
 });

@@ -11,21 +11,20 @@ Ext.define("TDK.Gaji", {
       itemId: 'mainGaji',
       store: {
         fields: [
-          'po_number', 
-          'po_date', 
-          'sup', 
-          'supname', 
-          'pkp', 
-          'dp', 
-          'description', 
-          'amount_total', 
-          'grand_total', 
-          'last_approved', 
-          'email_vendor', 
-          'group',
-          'estimasi'
+          'nik',
+          'nama',
+          'gaji_pokok', 
+          'golongan', 
+          'jabatan', 
+          'status', 
+          'remark'
         ],
-        data: [ {} ]
+        proxy: {
+            type: 'localstorage',
+            id: 'store-gaji'
+        },
+        autoLoad: true,
+        autoSync: true,
       },
       plugins: ["filterfield"],
       viewConfig: {
@@ -61,19 +60,13 @@ Ext.define("TDK.Gaji", {
               },
             ],
           },
-          { header: 'PO Number', dataIndex: 'po_number', width: 120},
-          { header: 'PO Date', dataIndex: 'po_date', width: 100 },
-          { header: 'SUP', dataIndex: 'sup', width: 80 },
-          { header: 'Supplier Name', dataIndex: 'supname', width: 180 },
-          { header: 'PKP', dataIndex: 'pkp', width: 60 },
-          { header: 'DP', dataIndex: 'dp', width: 80 },
-          { header: 'Description', dataIndex: 'description', flex: 1 },
-          { header: 'Amount Total', dataIndex: 'amount_total', width: 120 },
-          { header: 'Grand Total', dataIndex: 'grand_total', width: 120 },
-          { header: 'Last Approved', dataIndex: 'last_approved', width: 120 },
-          { header: 'Email Vendor', dataIndex: 'email_vendor', width: 180 },
-          { header: 'Group', dataIndex: 'group', width: 80 },
-          { header: 'Estimasi', dataIndex: 'estimasi', width: 80 }
+          { header: 'NIK', dataIndex: 'nik', width: 120},
+          { header: 'NAMA', dataIndex: 'nama', width: 100 },
+          { header: 'GAJI POKOK', dataIndex: 'gaji_pokok', width: 80 },
+          { header: 'GOLONGAN', dataIndex: 'golongan', width: 180 },
+          { header: 'JABATAN', dataIndex: 'jabatan', width: 60 },
+          { header: 'STATUS', dataIndex: 'status', width: 80 },
+          { header: 'REMARK', dataIndex: 'remark', flex: 1}
         ]
       },
       listeners: {

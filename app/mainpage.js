@@ -32,9 +32,22 @@ Ext.define("TDK.mainpage", {
                         },
                         "-",
                         { 
-                        text: "Sinkronisasi", 
-                        handler: "onSinkronisasi",
-                        icon: vconfig.getstyle + "/icon/certificate.ico"
+                        text: "NewInput", 
+                        icon: vconfig.getstyle + "/icon/add.png",
+                        handler: function() {
+                            var grid = Ext.ComponentQuery.query('grid[reference=Gaji]')[0];
+
+                            // if (!grid) {
+                            //     Ext.Msg.alert('Error', 'Grid Gaji tidak ditemukan');
+                            //     return;
+                            // }
+
+                            var store = grid.getStore();
+
+                            Ext.create('TDK.input.formed', {
+                                gridStore: store
+                            }).show();
+                        }
                         },
                         "-",
                         { 
