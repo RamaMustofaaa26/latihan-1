@@ -34,7 +34,7 @@ Ext.define("TDK.Cmainpage", {
 
   onSinkronisasi: function(btn) {
     try {
-      var form = Ext.create("TDK.input.form", 
+      var form = Ext.create("TDK.input.formed", 
       // {
       //   listeners: {
       //     close: function() {

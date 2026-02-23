@@ -6,7 +6,7 @@ Ext.define("TDK.mainpage", {
     requires: [
         "TDK.Cmainpage",
         "TDK.Gaji",
-        "TDK.input.form"
+        "TDK.input.formed"
     ],
     controller: "Cmainpage",
 
